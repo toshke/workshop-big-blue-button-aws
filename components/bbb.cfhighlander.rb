@@ -2,8 +2,8 @@ CfhighlanderTemplate do
 
 
   Parameters do
-    ComponentParam 'DOMAIN_NAME', Ref('DomainName')
-    ComponentParam 'ADMIN_EMAIL', Ref('ADMIN_EMAIL')
+    ComponentParam 'DomainName', 'online.example.com', description: 'Domain name for Big Blue Button server'
+    ComponentParam 'AdminEmail', 'admin@example.com', description: 'Admin Email address for Lets Encrypt certificate'
   end
 
   Component template: 'simple-vpc', name: 'vpc'
@@ -13,7 +13,7 @@ CfhighlanderTemplate do
     parameter name: 'SubnetIds', value: [FnGetAtt('vpc', 'PublicA')]
     Parameters do
       ComponentParam 'DOMAIN_NAME', Ref('DomainName')
-      ComponentParam 'ADMIN_EMAIL', Ref('ADMIN_EMAIL')
+      ComponentParam 'ADMIN_EMAIL', Ref('AdminEmail')
     end
   end
 
