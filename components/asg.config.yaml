@@ -1,1 +1,1 @@
-ami-id: ami-02d7e25c1cfdd5695
+user_data: 'file:user_data.sh'

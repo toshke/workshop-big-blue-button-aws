@@ -64,6 +64,9 @@ CloudFormation do
         MapPublicIpOnLaunch false
         Tags [{ 'Key' => 'Name', 'Value' => "#{name}-#{subnet_name}" }]
       end
+      Output(subnet_name) do
+        Value(Ref(subnet_name))
+      end
       subnet_counter = subnet_counter + 1
       current_subnet = "#{cidr_components[0]}.#{cidr_components[1]}.#{subnet_counter}.0/24"
       i = i+1
@@ -80,6 +83,9 @@ CloudFormation do
       CidrBlock current_subnet
       MapPublicIpOnLaunch false
       Tags [{ 'Key' => 'Name', 'Value' => "#{name}-#{subnet_name}" }]
+    end
+    Output(subnet_name) do
+      Value(Ref(subnet_name))
     end
     subnet_counter = subnet_counter + 1
     current_subnet = "#{cidr_components[0]}.#{cidr_components[1]}.#{subnet_counter}.0/24"

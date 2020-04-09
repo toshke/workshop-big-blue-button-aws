@@ -5,6 +5,10 @@ CloudFormation do
   capacity = external_parameters.fetch(:capacity)
   termination_policies = external_parameters.fetch(:termination_policies)
 
+  if instance_userdata.start_with? 'file:'
+    instance_userdata = File.read (instance_userdata.sub('file:', ''))
+  end
+
   EC2_SecurityGroup(:ASGSecGroup) do
     VpcId Ref('VpcId')
     GroupDescription "#{name} - ASG SG"
@@ -40,9 +44,10 @@ CloudFormation do
 
   AutoScaling_AutoScalingGroup(:ASG) do
     AutoScalingGroupName "#{name}"
-    # VPCZoneIdentifier FnSplit(',', FnJoin(',', Ref(:SubnetIds)))
-    VPCZoneIdentifier ['subnet-07a6d56efa21bdcc0']
-    LaunchTemplate ({ LaunchTemplateId: Ref(:LaunchTemplate) , Version: FnGetAtt(:LaunchTemplate, :LatestVersionNumber)})
+    # line below causes Ref fn to be wrapped within array, hence using Property statement instead
+    # VPCZoneIdentifier Ref(:SubnetIds)
+    Property('VPCZoneIdentifier', Ref(:SubnetIds))
+    LaunchTemplate ({ LaunchTemplateId: Ref(:LaunchTemplate), Version: FnGetAtt(:LaunchTemplate, :LatestVersionNumber) })
     MinSize capacity.fetch(:min, '1')
     MaxSize capacity.fetch(:max, '1')
     DesiredCapacity capacity.fetch(:desired, '1')
