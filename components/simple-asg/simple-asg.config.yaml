@@ -1,0 +1,22 @@
+
+name: simple-asg
+user_data: >
+  #!/bin/bash
+
+  echo 'Hello World'
+
+
+capacity:
+  min: 1
+  max: 1
+  desired: 1
+
+# use terminate or stop
+shutdown_behaviour: stop
+
+# termination policies allowed values
+# OldestInstance, OldestLaunchConfiguration, NewestInstance, ClosestToNextInstanceHour, Default, OldestLaunchTemplate, and AllocationStrategy
+# by default instances with oldest configuration will be terminated, followed by oldest instances
+termination_policies:
+  - OldestLaunchTemplate
+  - OldestInstance
