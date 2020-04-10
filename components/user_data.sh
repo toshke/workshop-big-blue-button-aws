@@ -30,6 +30,3 @@ mkdir -p /tmp/bbb-install && \
     wget https://ubuntu.bigbluebutton.org/bbb-install.sh  && \
     chmod a+x bbb-install.sh && \
     ./bbb-install.sh -v xenial-220 -s ${DomainName} -e ${AdminEmail} -l -g
-
-bbb-conf --stop
-bbb-conf --start
