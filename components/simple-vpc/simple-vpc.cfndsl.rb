@@ -220,7 +220,7 @@ CloudFormation do
 
 
   ## Outputs
-  Output('VPCId') do
+  Output('VpcId') do
     Value Ref('VPC')
   end
 end

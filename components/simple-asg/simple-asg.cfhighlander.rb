@@ -5,7 +5,7 @@ CfhighlanderTemplate do
 
   Parameters do
     ComponentParam 'ImageId', 'ami-08fdde86b93accf1c', type: 'AWS::EC2::Image::Id'
-    ComponentParam 'InstanceType', 't3.small'
+    ComponentParam 'InstanceType', instance_type_default
     ComponentParam 'SubnetIds', type: 'List<AWS::EC2::Subnet::Id>'
     ComponentParam 'VpcId', type: 'AWS::EC2::VPC::Id'
     ComponentParam 'KeyName', type: 'AWS::EC2::KeyPair::KeyName'

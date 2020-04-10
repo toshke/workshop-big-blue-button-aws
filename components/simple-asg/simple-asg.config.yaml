@@ -1,4 +1,3 @@
-
 name: simple-asg
 user_data: >
   #!/bin/bash
@@ -13,6 +12,7 @@ capacity:
 
 # use terminate or stop
 shutdown_behaviour: stop
+instance_type_default: t3.small
 
 # termination policies allowed values
 # OldestInstance, OldestLaunchConfiguration, NewestInstance, ClosestToNextInstanceHour, Default, OldestLaunchTemplate, and AllocationStrategy
@@ -20,3 +20,19 @@ shutdown_behaviour: stop
 termination_policies:
   - OldestLaunchTemplate
   - OldestInstance
+
+# list of managed policies attached to instance role
+managed_policies:
+  - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
+# add any IAM policies in here
+inline_policies: []
+
+# turn this on to assign public ip address to ASG instances. Disabled by default
+public_ip: false
+
+# security group rules
+allow_incoming:
+  - port: 443
+    range: 127.0.0.1/32
+    protocol: tcp
+
