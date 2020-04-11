@@ -1,4 +1,0 @@
-CfhighlanderTemplate do
-
-
-end
