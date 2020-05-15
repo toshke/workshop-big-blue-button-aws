@@ -65,7 +65,29 @@ Shortly after stack creation has started you should be able to see EC2 instance 
 in your [EC2 Web Console](https://ap-southeast-2.console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#Instances:sort=instanceId)
 
 
-TBC
+Wait until you can see the server is up and running - InstanceState column should show running like on 
+the page below
+
+![Screen Shot 2020-05-15 at 7 25 22 pm](https://user-images.githubusercontent.com/1170273/82034682-dbf07b80-96e1-11ea-9933-8d7526f82442.png)
+
+Once the server is running, you can use script below to 
+ - discover instance id programmatically through the use of Aws Cli
+ - Log in to your instance secure shell using AWS SSM service
+
+```bash
+#!/bin/bash
+# use aws cli to obtain instanceid i-xxxxx
+instance_id=$(aws ec2 describe-instances --filters \
+     "Name=instance-state-name,Values=running" \
+     "Name=tag:Name,Values=BigBlueButton-Server" \
+     --query 'Reservations[].Instances[].InstanceId' --output text)
+echo "Connecting to $instance_id"
+aws ssm start-session --target "${instance_id}"
+```
+
+**Note** - If this command gets stuck, retry in new terminal window. As there are changes
+to the network configuration during the instance boot procedure, there is slight window
+where SSM may connect initially, but not respond. 
 
 
 #### Obtain web login admin credentials
