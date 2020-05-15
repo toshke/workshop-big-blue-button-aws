@@ -2,6 +2,12 @@
 
 Workshop tutorial for Big Blue Button setup on AWS
 
+## Prereqs
+
+- AWS Cli
+- Bash shell with `curl` command available
+- AWS Account
+
 ## Useful destinations
 
 [BigBlueButton OpenSource Distance learning software](https://www.bigbluebutton.org)
