@@ -24,7 +24,7 @@ Choose your closest region below, and click on appropriate link to initiate Clou
 | `us-west-2` | US West (Oregon) | <a target="_blank" href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=big-blue-button&templateURL=https://s3.us-west-2.amazonaws.com/templates-us-west-2.cfhighlander.info/templates/bbb/1589275224/bbb.compiled.yaml"><img src="https://raw.githubusercontent.com/toshke/big-blue-button-cloudformation-cfhl/fec34f65f91ef984f95945a2e6e285c6b54f9992/launch-stack.svg" /></a>  |
 | `ca-central-1` | Canada (Central) | <a target="_blank" href="https://console.aws.amazon.com/cloudformation/home?region=ca-central-1#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ca-central-1.amazonaws.com/templates-ca-central-1.cfhighlander.info/templates/bbb/1589275224/bbb.compiled.yaml"><img src="https://raw.githubusercontent.com/toshke/big-blue-button-cloudformation-cfhl/fec34f65f91ef984f95945a2e6e285c6b54f9992/launch-stack.svg" /></a>  |
 
-*If you can't find your desired region below, you can check <a href="https://github.com/toshke/big-blue-button-cloudformation-cfhl"> templates origin page</a>*
+*If you can't find your desired region below, you can check <a target="_blank" href="https://github.com/toshke/big-blue-button-cloudformation-cfhl"> templates origin page</a>*
 
 You will be taken to a page to input desired parameters to your CloudFormation stack, 
 where you'll use your hosted zone created in previous stack, as in the screenshot below
