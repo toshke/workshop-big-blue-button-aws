@@ -1,12 +1,12 @@
-# workshop-big-blue-button-aws
+# BigBlueButton deployment to AWS
 
-Workshop tutorial for Big Blue Button setup on AWS
+Workshop tutorial for Big Blue Button open source video conferencing software setup on AWS
 
 ## Prereqs
 
-- AWS Cli
 - Bash shell with `curl` command available
-- AWS Account
+- AWS Cli
+- AWS Account / Credentials with enough privileges to manage EC2/VPC, IAM and SSM services. 
 
 ## Useful destinations
 
