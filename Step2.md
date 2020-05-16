@@ -90,7 +90,52 @@ to the network configuration during the instance boot procedure, there is slight
 where SSM may connect initially, but not respond. 
 
 
+Once you have logged into the server, you can trail the server setup log, 
+by executing following command 
+
+```bash
+$ tail -f /var/log/cloud-init-output.log
+```
+ 
+Depending in which state the server setup is currently, you may see different output,
+but the message marking end of the boot and installation sequence should look 
+like below. Server configuration should be complete within 10-20 minutes since you
+clicked the 'create stack' button. 
+ 
+```text
+Cloud-init v. 19.4-33-gbb4131a2-0ubuntu1~16.04.1 running 'modules:final' at Wed, 13 May 2020 02:20:32 +0000. Up 57.33 seconds.
+ci-info: no authorized SSH keys fingerprints found for user ubuntu.
+Cloud-init v. 19.4-33-gbb4131a2-0ubuntu1~16.04.1 finished at Wed, 13 May 2020 02:32:33 +0000. Datasource DataSourceEc2Local.  Up 778.35 seconds
+```
+
+
 #### Obtain web login admin credentials
 
+As a final step, you'll need credentials to login to your Web user interface. 
+As the server configuration stores the values for default user, password, as
+well as login url - you can execute script below in your bash shell
+to obtain these parameters
 
-[Go to Step3](Step3.md) 
+```bash
+
+CONFIG_PATH=/bigbluebutton/config
+BBBPASS=$(aws ssm get-parameter --name ${CONFIG_PATH}/admin_password --query Parameter.Value --output text --with-decryption)
+BBBUSER=$(aws ssm get-parameter --name ${CONFIG_PATH}/admin_user --query Parameter.Value --output text)
+BBBSERVER=$(aws ssm get-parameter --name ${CONFIG_PATH}/server_url --query Parameter.Value --output text)
+echo "Login with ${BBBUSER}:${BBBPASS} at ${BBBSERVER}/b/signin"
+```
+
+Output should look somewhat like
+
+```text
+Login with admin@programming-tools-meetup.cloud:XXXXXXXXX at https://workshop-XXXXX.programming-tools-meetup.cloud/b/signin
+```
+
+Copy and paste https url into your browser to be greeted with Greenlight (BBB UI) 
+Login page, where you can input username:password credentials obtained in previous command
+
+<img width="1041" alt="Screen Shot 2020-05-16 at 7 02 52 pm" src="https://user-images.githubusercontent.com/1170273/82115794-51268400-97a8-11ea-8b40-f74fcb5114eb.png">
+
+
+
+[Go to Step3 - Configure your BibBlueButton server](Step3.md) 
