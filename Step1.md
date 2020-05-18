@@ -20,11 +20,11 @@ zone.
 This will be done in 3 steps 
 - Request a zone through the API
 - Create Route53 Zone in your own account
-- Update RootZone with NS servers from your own account
+- Update RootZone with NS records from your own account
 
 
-By executing the following script in bash shell you should get your zone displayed in output, 
-in `workshop-XXXXX.programming-tools-meetup.cloud' format. 
+By executing the following script in bash shell you should get your subdomain displayed in output, 
+in `workshop-XXXXX.programming-tools-meetup.cloud` format. 
 
 
 #### Request Zone name
@@ -40,12 +40,12 @@ Output should look something like
 {"zone": "workshop-XXXX.programming-tools-meetup.cloud"}
 ```
 
-#### Created hosted zone
+#### Create hosted zone
 
-Now that you have reserved your Zone name with above API call, it is time 
-to create the zone within your own AWS account through the aws cli. Take a note of 
-a zone name above, and replace  `workshop-XXXX.programming-tools-meetup.cloud` in 
-below's command with it. 
+Now that you have reserved your subdomain with above API call, it is time 
+to create the zone within your own AWS account through the AWS CLI. You'll
+need to replace `workshop-XXXX.programming-tools-meetup.cloud` in the command
+below with your subdomain from the previous step.
 
 ```bash
 
@@ -55,7 +55,7 @@ aws route53 create-hosted-zone  \
     --query 'DelegationSet.NameServers'
 ```
 
-Output should look like 
+Output should look like this:
 
 ```json
 [
@@ -66,13 +66,13 @@ Output should look like
 ]
 ```
 
-Copy this values, as you will need them for next step
+Copy these values, as you will need them for next step.
 
 #### Delegate hosted zone NS 
 
 As `.programming-tools-meetup.cloud` zone is hosted outside of your account, we have 
-developed an API for you to registed your zone within our account. To do so, you'll need
-to construct JSON-structured payload, including both zone name and your NS servers. Payload, has 
+developed an API for you to register your subdomain within our account. To do so, you'll need
+to construct JSON-structured payload with your zone name and your NS domains. The payload has 
 2 keys - `zoneName` and `ns`. With example given above, payload looks like 
 
 ```json
@@ -87,7 +87,7 @@ to construct JSON-structured payload, including both zone name and your NS serve
 }
 ```
 
-Again, we will be using standard `curl` command in bash shell to make an HTTP(s) API request call
+Again, we will be using standard `curl` command in bash shell to make an HTTP(s) API request call.
 
 ```bash
 curl -X PUT -d '{
@@ -102,7 +102,7 @@ curl -X PUT -d '{
 ```
 
 As an response from the resource server, you should again see json structure with `zoneName`
-as only element
+as only element.
  
 ```text
 {"zone": "workshop-XXXX.programming-tools-meetup.cloud"}
@@ -111,10 +111,10 @@ as only element
 #### Verify NS servers 
 
 
-Theoretically, DNS changes should take hold off imediatelly, though that's not always the case, sometimes
+Theoretically, DNS changes should take hold off imediatelly, though that's not always the case. Sometimes
 it takes few minutes, depending on the path from your local DNS resolver to the source of truth. 
 
-You can use standard `nslookup` tool, available on both macOS and windows to read the NS servers for particular
+You can use standard `nslookup` tool, available on both macOS and Windows, to read the NS servers for particular
 domain:
 
 ```shell
@@ -135,10 +135,10 @@ workshop-XXXX.programming-tools-meetup.cloud	nameserver = ns-451.awsdns-56.com.
 workshop-XXXX.programming-tools-meetup.cloud	nameserver = ns-573.awsdns-07.net.
 ```
 
-With your own Route53 hosted zone, you can move forward and 
-
-**IMPORTANT NOTICE** All of the NS records for  zones created during the workshop will be 
+**IMPORTANT NOTICE** All of the NS records for zones created during the workshop will be 
 removed shortly after the meetup event. If you want to deploy BBB server for more long-term 
-usage, use your own Route53 hosted zone. 
+usage, you'll need to set up nameservers for your domain through your hosting provider.
+You can register and configure a domain through Route 53 using
+[these instructions](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/getting-started.html). 
 
 [Go to step2 - BigBlueButton Deployment](Step2.md) 
