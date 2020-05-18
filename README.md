@@ -24,7 +24,9 @@ Workshop tutorial for Big Blue Button open source video conferencing software se
 
 [Step 3 - Configure BigBlueButton](./Step3.md) 
 
-[Step 4 - **admin title**](./Step4.md) 
+[Step 4 - Use the admin console and invite other people](./Step4.md)
+
+[Cleanup](./Cleanup.md)
 
 ## Advanced tasks for exercise
 
