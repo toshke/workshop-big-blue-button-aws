@@ -6,26 +6,26 @@ As well as configuring BigBlueButton's code files, we can also customise it usin
 
 1. Log on to the instance via SSH, and navigate to the Greenlight directory:
 
-  ```bash
-  #!/bin/bash
-  # use aws cli to obtain instanceid i-xxxxx
-  instance_id=$(aws ec2 describe-instances --filters \
-       "Name=instance-state-name,Values=running" \
-       "Name=tag:Name,Values=BigBlueButton-Server" \
-       --query 'Reservations[].Instances[].InstanceId' --output text)
-  echo "Connecting to $instance_id"
-  aws ssm start-session --target "${instance_id}"
-  ```
-  ```bash
-  cd ~/greenlight
-  ```
+    ```bash
+    #!/bin/bash
+    # use aws cli to obtain instanceid i-xxxxx
+    instance_id=$(aws ec2 describe-instances --filters \
+         "Name=instance-state-name,Values=running" \
+         "Name=tag:Name,Values=BigBlueButton-Server" \
+         --query 'Reservations[].Instances[].InstanceId' --output text)
+    echo "Connecting to $instance_id"
+    aws ssm start-session --target "${instance_id}"
+    ```
+    ```bash
+    cd ~/greenlight
+    ```
 
 1. Run the following command to create a new administrator user:
 
-  ```bash
-  docker exec greenlight-v2 bundle exec rake user:create["name","email","password","admin"]
-  ```
-  Substitute "name", "email", and "password" for the relevant values.
+    ```bash
+    docker exec greenlight-v2 bundle exec rake user:create["name","email","password","admin"]
+    ```
+    Substitute "name", "email", and "password" for the relevant values.
 
 ## Exploring the administrator console
 
