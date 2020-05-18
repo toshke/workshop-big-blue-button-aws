@@ -81,11 +81,10 @@ Now that we've set up BigBlueButton on AWS, it's time to make sure that it suits
 
 1. At approximately line 200, uncomment the following line:
 
-  ```xml
-  <param name="moh-sound" value="$${hold_music}"/>
-  ```
-  
-  Save the file.
+     ```xml
+     <param name="moh-sound" value="$${hold_music}"/>
+     ```
+     Save the file.
 
 1. Download the music file to your server (**instructions coming**):
 
@@ -107,11 +106,10 @@ Now that we've set up BigBlueButton on AWS, it's time to make sure that it suits
 
 1. Change the `hold_music` parameter on the following line to refer to the music file we uploaded:
 
-  ```xml
-  <X-PRE-PROCESS cmd="set" data="hold_music=local_stream://moh"/>
-  ```
-  
-  Save the file.
+     ```xml
+     <X-PRE-PROCESS cmd="set" data="hold_music=local_stream://moh"/>
+     ```
+     Save the file.
 
 1. Restart BigBlueButton to apply your changes:
 
