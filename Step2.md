@@ -3,13 +3,13 @@
 
 CloudFormation is AWS service used to describe infrastructure elements as a code 
 (a set of yaml or json configuration files). This allows for automated
-and repeatable provisioning process of the 
+and repeatable provisioning process of the BigBlueButton server to an EC2 instance.
 
 In this step we will use CloudFormation templates from [big-blue-button-cloudformation-cfhl](https://github.com/toshke/big-blue-button-cloudformation-cfhl)
 repository to create the required infrastructure to run the software using Amazon Web Services platform.
 
 
-Before proceeding further, make sure that you are logged in [AWS Web Console](https://console.aws.amazon.com/)
+Before proceeding further, make sure that you are logged in to the [AWS Web Console](https://console.aws.amazon.com/)
 
 
 #### Start stack creation 
@@ -27,12 +27,12 @@ Choose your closest region below, and click on appropriate link to initiate Clou
 *If you can't find your desired region below, you can check <a target="_blank" href="https://github.com/toshke/big-blue-button-cloudformation-cfhl"> templates origin page</a>*
 
 You will be taken to a page to input desired parameters to your CloudFormation stack, 
-where you'll use your hosted zone created in previous stack, as in the screenshot below
+where you'll use your hosted zone created in previous stack, as in the screenshot below:
 
 ![Screen Shot 2020-05-15 at 6 55 06 pm](https://user-images.githubusercontent.com/1170273/82031980-f58fc400-96dd-11ea-86e4-7580aebc4d7f.png)
 
 
-You can leave most of the default values untouched - you'll need to supply values for following  
+You can leave most of the default values untouched - you'll need to supply values for following:
 
 - **AdminEmail** - used for SSL certificate domain verification, as well as default login
                 to big blue button web portal (Greenlight)
@@ -66,7 +66,7 @@ in your [EC2 Web Console](https://ap-southeast-2.console.aws.amazon.com/ec2/v2/h
 
 
 Wait until you can see the server is up and running - InstanceState column should show running like on 
-the page below
+the page below:
 
 ![Screen Shot 2020-05-15 at 7 25 22 pm](https://user-images.githubusercontent.com/1170273/82034682-dbf07b80-96e1-11ea-9933-8d7526f82442.png)
 
@@ -90,7 +90,7 @@ to the network configuration during the instance boot procedure, there is slight
 where SSM may connect initially, but not respond. 
 
 
-Once you have logged into the server, you can trail the server setup log, 
+Once you have logged into the server, you can tail the server setup log, 
 by executing following command 
 
 ```bash
@@ -99,8 +99,7 @@ $ tail -f /var/log/cloud-init-output.log
  
 Depending in which state the server setup is currently, you may see different output,
 but the message marking end of the boot and installation sequence should look 
-like below. Server configuration should be complete within 10-20 minutes since you
-clicked the 'create stack' button. 
+like below. Server configuration should be complete within 10-20 minutes of clicking the 'create stack' button. 
  
 ```text
 Cloud-init v. 19.4-33-gbb4131a2-0ubuntu1~16.04.1 running 'modules:final' at Wed, 13 May 2020 02:20:32 +0000. Up 57.33 seconds.
@@ -138,4 +137,4 @@ Login page, where you can input username:password credentials obtained in previo
 
 
 
-[Go to Step3 - Configure your BibBlueButton server](Step3.md) 
+[Go to Step3 - Configure BigBlueButton using the command line](Step3.md) 
