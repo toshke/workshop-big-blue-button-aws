@@ -5,7 +5,7 @@ Workshop tutorial for Big Blue Button open source video conferencing software se
 ## Prereqs
 
 - Bash shell with `curl` command available
-- AWS Cli
+- AWS CLI
 - AWS Account / Credentials with enough privileges to manage EC2/VPC, IAM and SSM services. 
 
 ## Useful destinations
@@ -18,13 +18,13 @@ Workshop tutorial for Big Blue Button open source video conferencing software se
 
 ## Steps
 
-[Step 1 - Create and register Route53 zone ](./Step1.md) 
+[Step 1 - Create and register Route53 zone](./Step1.md) 
 
-[Step 2 - Deploy BigBlueButton Server ](./Step2.md) 
+[Step 2 - Deploy BigBlueButton Server](./Step2.md) 
 
-[Step 3 -  Invite a friend to your conference room ](./Step3.md) 
+[Step 3 - Configure BigBlueButton](./Step3.md) 
 
-[Step 4 - Server configuration](./Step2.md) 
+[Step 4 - **admin title**](./Step4.md) 
 
 ## Advanced tasks for exercise
 
