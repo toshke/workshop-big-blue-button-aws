@@ -67,6 +67,8 @@ Now that we've set up BigBlueButton on AWS, it's time to make sure that it suits
 
 ## Adding background music when only one person is in a session
 
+For this exercise, we're going to use a royalty-free song by Kevin Macleod of [Incompetech](https://incompetech.com/).  His music is released under a Creative Commons attribution license, which allows us to use it for this purpose.
+
 1. Navigate to the `autoload_configs` folder:
 
      ```bash
@@ -86,10 +88,10 @@ Now that we've set up BigBlueButton on AWS, it's time to make sure that it suits
      ```
      Save the file.
 
-1. Download the music file to your server (**instructions coming**):
+1. Use `wget` to download the music file to your server (you may need to use `sudo apt install wget` to install it):
 
      ```bash
-     xxx
+     sudo wget  -P /opt/freeswitch/share/freeswitch/sounds "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Off%20to%20Osaka.mp3"
      ```
 
 1. Navigate to the `conf` folder:
@@ -104,10 +106,10 @@ Now that we've set up BigBlueButton on AWS, it's time to make sure that it suits
      nano vars.xml
      ```
 
-1. Change the `hold_music` parameter on the following line to refer to the music file we uploaded:
+1. Change the `hold_music` parameter to refer to the music file we uploaded:
 
      ```xml
-     <X-PRE-PROCESS cmd="set" data="hold_music=local_stream://moh"/>
+     <X-PRE-PROCESS cmd="set" data="hold_music=/opt/freeswitch/share/freeswitch/sounds/Off%20to%20Osaka.mp3" />
      ```
      Save the file.
 
