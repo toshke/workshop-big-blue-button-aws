@@ -18,7 +18,7 @@ Workshop tutorial for Big Blue Button open source video conferencing software se
 
 ## Steps
 
-[Step 1 - Create and register Route53 zone](./Step1.md) 
+**THIS STEP IS NOT VALID, USE YOUR OWN ROUTE 53 HOSTED ZONE** [Step 1 - Create and register Route53 zone](./Step1.md) 
 
 [Step 2 - Deploy BigBlueButton Server](./Step2.md) 
 
