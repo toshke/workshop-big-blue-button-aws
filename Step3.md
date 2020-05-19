@@ -45,16 +45,17 @@ Now that we've set up BigBlueButton on AWS, it's time to make sure that it suits
 
 ## Changing the default presentation
 
-1. Navigate to the `bigbluebutton-default` folder:
+1. Navigate to the `bigbluebutton-default` folder, and delete the `default.pdf` file:
 
      ```bash
      cd /var/www/bigbluebutton-default/
+     sudo rm default.pdf
      ```
 
-1. Replace the `default.pdf` file with another file (**instructions coming**):
+1. Use `wget` to download the sample PDF file to your server as `default.pdf` (you may need to use `sudo apt install wget` to install it):
 
      ```bash
-     xxx
+     wget  -O /var/www/bigbluebutton-default/default.pdf "https://s3-ap-southeast-2.amazonaws.com/workshop-artifacts.programming-tools-meetup.cloud/awspt.pdf"
      ```
 
 1. Restart BigBlueButton to apply your changes:
@@ -63,9 +64,11 @@ Now that we've set up BigBlueButton on AWS, it's time to make sure that it suits
      sudo bbb-conf --restart
      ```
 
-1. Go to the URL of your BigBlueButton server, create a new meeting, and check that the default presentation has changed to your PDF.  (This may take a couple of minutes to take effect)
+1. Go to the URL of your BigBlueButton server, create a new meeting, and check that the default presentation has changed to the `Welcome to the AWS Programming and Tools meetup` PDF.  (This may take a couple of minutes to take effect)
 
 ## Adding background music when only one person is in a session
+
+For this exercise, we're going to use a royalty-free song by Kevin Macleod of [Incompetech](https://incompetech.com/).  His music is released under a Creative Commons attribution license, which allows use for commercial purposes.  This means that you can follow these instructions to install his music on a commercial BigBlueButton server as well.
 
 1. Navigate to the `autoload_configs` folder:
 
@@ -86,10 +89,10 @@ Now that we've set up BigBlueButton on AWS, it's time to make sure that it suits
      ```
      Save the file.
 
-1. Download the music file to your server (**instructions coming**):
+1. Use `wget` to download the music file to your server:
 
      ```bash
-     xxx
+     sudo wget  -P /opt/freeswitch/share/freeswitch/sounds "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Off%20to%20Osaka.mp3"
      ```
 
 1. Navigate to the `conf` folder:
@@ -104,10 +107,10 @@ Now that we've set up BigBlueButton on AWS, it's time to make sure that it suits
      nano vars.xml
      ```
 
-1. Change the `hold_music` parameter on the following line to refer to the music file we uploaded:
+1. Change the `hold_music` parameter to refer to the music file we uploaded:
 
      ```xml
-     <X-PRE-PROCESS cmd="set" data="hold_music=local_stream://moh"/>
+     <X-PRE-PROCESS cmd="set" data="hold_music=/opt/freeswitch/share/freeswitch/sounds/Off%20to%20Osaka.mp3" />
      ```
      Save the file.
 
