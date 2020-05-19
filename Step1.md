@@ -1,5 +1,8 @@
 # Create Route53 hosted zone to host your BBB installation
 
+**IMPORTANT - This step uses API calls to endpoints which are decomissioned after the workshop event, and 
+not working as such. Jump straight to step2 with your own Route53 hosted zone**
+
 ## Why Route53 Hosted Zone
 
 As BigBlueButton is using RTMP (Real-Time messaging) Protocol for Audio and Video 
